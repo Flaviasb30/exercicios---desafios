@@ -1,0 +1,76 @@
+// Desafios - Carrinho Compras
+// Desafio 1: Adicione validações no código para garantir que o usuário só consiga adicionar produtos ao carrinho se tiver selecionado um produto válido e inserido uma quantidade válida. Se a entrada não for válida, exiba uma mensagem de erro apropriada.
+let totalGeral;
+limpar();
+
+function adicionar() {
+    let produto = document.getElementById('produto').value;
+    let nomeProduto = produto.split('-')[0];
+    let valorUnitario = produto.split('R$')[1];
+    let quantidade = document.getElementById('quantidade').value;
+    let preco = quantidade * valorUnitario;
+
+    alert(nomeProduto);
+    alert(quantidade);
+    alert(produto);
+    alert(preco)
+// verificar se o produto inserido é válido
+ if (!produto || produto.trim() === "") {
+    alert('Selecione um produto válido');
+    return;
+ }
+// verificar se a quantidade inserida é valida
+ if (isNaN(quantidade) || quantidade <= 0) {
+    alert('Insira uma quantidade válida');
+    return
+ }
+    let carrinho = document.getElementById('lista-produtos');
+    carrinho.innerHTML = carrinho.innerHTML + `<section class="carrinho__produtos__produto">
+    <span class="texto-azul">${quantidade}x</span> ${nomeProduto} <span class="texto-azul">R${preco}</span>
+  </section>`;
+
+    totalGeral = totalGeral + preco;
+    let campoTotal = document.getElementById('valor-total');
+    campoTotal.textContent = `R$ ${totalGeral}`;
+    document.getElementById('quantidade').value = 0;
+}
+
+function limpar() {
+    totalGeral = 0;
+    document.getElementById('lista-produtos').innerHTML = '';
+    document.getElementById('valor-total').textContent = 'R$0';
+}
+
+// Desafio 2: Crie um formulário simples com campos de entrada e utilize JavaScript para recuperar os valores digitados nos campos usando a propriedade value. Exiba os valores no console e na tela.
+function capturarValores() {
+    const nome = document.getElementById('campoNome').value;
+    const idade = document.getElementById('campoIdade').value;
+
+ document.getElementById('mostraNome').textContent = `Nome: ${nome}, Idade: ${idade}`;
+    console.log(`Nome: ${nome}, Idade: ${idade}`);
+}
+
+// Desafio 3: Tenha um elemento HTML na página (por exemplo, um parágrafo) e utilize JavaScript para modificar seu conteúdo usando a propriedade textContent.
+function modificarConteudo() {
+    const paragrafo = document.getElementById('meuParagrafo');
+    paragrafo.textContent = 'Novo texto modificado dinamicamente!';
+}
+
+// Desafio 4: Faça a soma de duas variáveis numéricas e apresente no console com uma mensagem amigável em Template String.
+const numero1 = 5;
+const numero2 = 10;
+
+const soma = numero1 + numero2;
+const mensagem = `A soma de ${numero1} e ${numero2} é ${soma}.`;
+console.log(mensagem);
+
+// Desafio 5: Receba, no mínimo, duas sentenças como uma string e utilize split() para quebrá-la em frases menores com base em um ponto e vírgula como delimitador.
+const duasSentencas = 'Não desista; O começo é sempre a parte mais difícil'
+const frasesSeparadas = duasSentencas.split(';');
+
+console.log(frasesSeparadas);
+
+// Desafio 6: Receba uma string contendo números separados por vírgulas. Utilize split() para separar os números e exibi-los no console.
+const numerosSeparados = "10,20,30,40,50";
+const arrayNumeros = numerosSeparados.split(',');
+console.log(arrayNumeros);
